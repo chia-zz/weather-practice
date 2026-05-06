@@ -1,0 +1,49 @@
+@import 'tailwindcss';
+
+@theme {
+  /* primary */
+  --color-denim-50: #f0f7ff;
+  --color-denim-100: #dfefff;
+  --color-denim-200: #b9dffe;
+  --color-denim-300: #7bc7fe;
+  --color-denim-400: #34abfc;
+  --color-denim-500: #0a90ed;
+  --color-denim-600: #0072cb;
+  --color-denim-700: #0060b0; /* main */
+  --color-denim-800: #054d87;
+  --color-denim-900: #0a4070;
+  --color-denim-950: #07284a;
+
+  /* sub */
+  --color-mountain-meadow-50: #ebfef5;
+  --color-mountain-meadow-100: #cefde6;
+  --color-mountain-meadow-200: #a2f8d2;
+  --color-mountain-meadow-300: #67eebb;
+  --color-mountain-meadow-400: #2add9f;
+  --color-mountain-meadow-500: #05af7a; /* main */
+  --color-mountain-meadow-600: #009f71;
+  --color-mountain-meadow-700: #007f5d;
+  --color-mountain-meadow-800: #01644a;
+  --color-mountain-meadow-900: #02523e;
+  --color-mountain-meadow-950: #002f25;
+
+  /* tri */
+  --color-crimson-50: #fff0f1;
+  --color-crimson-100: #ffe1e4;
+  --color-crimson-200: #ffc8d0;
+  --color-crimson-300: #ff9baa;
+  --color-crimson-400: #ff637e;
+  --color-crimson-500: #ff2c55; /* main */
+  --color-crimson-600: #f60842;
+  --color-crimson-700: #e6003e;
+  --color-crimson-800: #ae0337;
+  --color-crimson-900: #940736;
+  --color-crimson-950: #530019;
+
+  --color-dragon: #c1020e;
+  --color-brother: #ffcc00;
+  --color-lions: #e26a10;
+  --color-guardiens: #004a9c;
+  --color-rakuten: #850b26;
+  --color-hawks: #074737;
+}
