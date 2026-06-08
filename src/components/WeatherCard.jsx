@@ -46,7 +46,7 @@ const WeatherCard = () => {
             >
               <div className='absolute top-4 right-4 z-0'>
                 <img
-                  src={item.team.assets.icon}
+                  src={`${import.meta.env.BASE_URL}${item.team.assets.icon.replace(/^\//, '')}`}
                   className='object-contain opacity-20 max-h-10'
                   alt={`${item.team.name}+icon`}
                 />{' '}
