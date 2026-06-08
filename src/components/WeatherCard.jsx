@@ -10,16 +10,17 @@ dayjs.extend(timezone);
 const WeatherCard = () => {
   const weatherData = useWeatherData();
   const { data, loading, error, refresh: fetchAll } = weatherData;
+  const nowTime = dayjs().format('HH:mm');
 
   return (
     <>
       <div className='flex flex-col mx-auto'>
-        <div className=' my-4'>
+        <div className='my-4 mx-auto'>
           <button
             type='button'
             onClick={fetchAll}
             disabled={loading}
-            className='bg-purple-500 hover:bg-denim-600 text-white px-4 py-2 rounded cursor-pointer'
+            className='bg-purple-500 hover:bg-denim-700 text-white px-4 py-2 rounded cursor-pointer'
           >
             {' '}
             {loading ? (
@@ -56,24 +57,24 @@ const WeatherCard = () => {
         }; */}
 
         {/* 即時天氣 */}
-        <div className='flex flex-wrap justify-center gap-4'>
+        <div className='inline-grid min-w-[320px] md:grid-cols-2 gap-4'>
           {data.map((item) => (
             <div
               key={item.id}
-              className='bg-white p-4 rounded-lg shadow-md border-2 border-gray-700'
+              className={`bg-white ${item.team.theme.text} border-b-2 border-e-2 ${item.team.theme.border} shadow-lg rounded-lg p-4`}
             >
               <div className='flex justify-center max-h-10'>
                 <img
-                  src={item.icon}
+                  src={item.team.assets.icon}
                   className='object-contain opacity-20'
-                  alt={`${item.teamName}+icon`}
+                  alt={`${item.team.name}+icon`}
                 />
               </div>
 
               <h2 className='text-lg font-bold text-blue-500 mb-2'>
-                {item.teamName}
+                {item.team.name}
               </h2>
-              <p className='text-sm text-gray-500'>{item.location}</p>
+              <p className='text-sm text-gray-500'>{item.team.dist}</p>
               <p className='text-3xl font-bold text-blue-700'>
                 {item.temperature}°C
               </p>
@@ -84,7 +85,48 @@ const WeatherCard = () => {
                 <p>🔺 最高 {item.highTemp}°C</p>
                 <p>🔻 最低 {item.lowTemp}°C</p>
                 <p className='text-xs mt-2'>{item.updateTime}</p>
+                <p className='text-xs mt-2'>現在時間：{nowTime}</p>
+                <p className='text-xs mt-2'>{item.weatherIcon}</p>
+                <p className='text-xs mt-2'>{item.weatherStatus}</p>
               </div>
+            </div>
+          ))}
+          {data.map((item) => (
+            <div
+              key={item.id}
+              className={`bg-white ${item.team.theme.text} border-b-2 border-e-2 ${item.team.theme.border} shadow-lg rounded-lg p-4 relative`}
+            >
+              <div className='absolute top-1/4 z-0'>
+                <img
+                  src={item.team.assets.icon}
+                  className='object-contain opacity-20 max-h-10'
+                  alt={`${item.team.name}+icon`}
+                />
+              </div>
+              <div className={`${item.team.theme.text}`}>
+                <p className='text-xs mt-2'>{item.weatherIcon}</p>
+                <p className='text-3xl font-bold text-blue-700'>
+                  {item.temperature}°C
+                </p>
+                <span className='text-xs mt-2'>
+                  {item.highTemp}°C /{item.lowTemp}°C
+                </span>
+              </div>
+
+              {/* <h2 className='text-lg font-bold text-blue-500 mb-2'>
+                {item.teamName}
+              </h2>
+              <p className='text-sm text-gray-500'>{item.location}</p>
+
+              <p className='text-gray-700'>體感溫度{item.appTem}°C</p>
+              <div className='mt-2 text-sm text-gray-600'>
+                <p>💧 降雨機率 {item.pop}%</p>
+
+                <p className='text-xs mt-2'>{item.updateTime}</p>
+                <p className='text-xs mt-2'>現在時間：{nowTime}</p>
+
+                <p className='text-xs mt-2'>{item.weatherStatus}</p>
+              </div> */}
             </div>
           ))}
         </div>

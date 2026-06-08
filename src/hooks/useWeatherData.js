@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { getRealtime, getForecast36h } from '../api/Api';
 import dayjs from 'dayjs';
 import { locations } from '../data/locationData';
+import { weatherIconMap } from '../data/weatherIconMap';
 
 // 處理 -99
 const handleInvalidValue = (value) => {
@@ -42,8 +43,6 @@ const useWeatherData = () => {
       const realtimeData = {
         id: rtBase.StationId,
         teamKey: teamKey,
-        teamName: team.name,
-        location: `${team.dist}`,
         updateTime: formatDateTime(rtBase.ObsTime.DateTime),
         rawTime: rtBase.ObsTime.DateTime,
         weather: rtBase.WeatherElement.Weather,
@@ -90,15 +89,14 @@ const useWeatherData = () => {
         return dataTime >= start && dataTime < end;
       });
 
+      // 處理天氣 icon
+      const weatherCode = handleInvalidValue(
+        matchedWS?.ElementValue[0].WeatherCode,
+      );
       const mergedData = {
         // base
         id: realtimeData.id,
-        teamKey: realtimeData.teamKey,
-        teamName: realtimeData.teamName,
-        location: realtimeData.location,
-        updateTime: realtimeData.updateTime,
-        logo: realtimeData.logo,
-        icon: realtimeData.icon,
+        team,
         // realtime
         temperature: handleInvalidValue(realtimeData.temperature),
         weather: handleInvalidValue(realtimeData.weather),
@@ -112,9 +110,11 @@ const useWeatherData = () => {
           matchedPop?.ElementValue[0].ProbabilityOfPrecipitation,
         ),
         weatherStatus: handleInvalidValue(matchedWS?.ElementValue[0].Weather),
-        weatherCode: handleInvalidValue(matchedWS?.ElementValue[0].WeatherCode),
+        weatherCode,
+        weatherIcon: weatherIconMap[weatherCode] ?? '😖',
       };
-      console.log('總整理' + mergedData);
+      // const newData = Object.values(mergedData);
+      console.log('總整理', mergedData);
       return mergedData;
     } catch (error) {
       console.error('任一請求失敗:', error);
@@ -129,7 +129,7 @@ const useWeatherData = () => {
       );
       setData(allResults);
     } catch (error) {
-      console.error('任一請求失敗:', error);
+      console.error('請求失敗:', error);
       setLoading(false);
       setError(error?.message || '天氣載入失敗');
     } finally {
