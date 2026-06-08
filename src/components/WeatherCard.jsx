@@ -15,6 +15,7 @@ const WeatherCard = () => {
   return (
     <>
       <div className='flex flex-col mx-auto'>
+        {/* 刷新按鈕 */}
         <div className='my-4 mx-auto'>
           <button
             type='button'
@@ -35,92 +36,47 @@ const WeatherCard = () => {
             )}
           </button>
         </div>
-        {/* const mergedData = {
-          // base
-          id: realtimeData.id,
-          teamKey: realtimeData.teamKey,
-          teamName: realtimeData.teamName,
-          location: realtimeData.location,
-          updateTime: realtimeData.updateTime,
-          logo: realtimeData.logo,
-          icon: realtimeData.icon,
-          // realtime
-          temperature: realtimeData.temperature,
-          weather: realtimeData.weather,
-          highTemp: realtimeData.highTemp,
-          lowTemp: realtimeData.lowTemp,
-          // 36hr
-          appTem: matchedAppTem?.ElementValue[0].ApparentTemperature,
-          pop: matchedPop?.ElementValue[0].ProbabilityOfPrecipitation,
-          weatherStatus: matchedWS?.ElementValue[0].Weather,
-          weatherCode: matchedWS?.ElementValue[0].WeatherCode,
-        }; */}
 
         {/* 即時天氣 */}
         <div className='inline-grid min-w-[320px] md:grid-cols-2 gap-4'>
           {data.map((item) => (
             <div
               key={item.id}
-              className={`bg-white ${item.team.theme.text} border-b-2 border-e-2 ${item.team.theme.border} shadow-lg rounded-lg p-4`}
+              className={`bg-white min-w-75 ${item.team.theme.text} ${item.team.theme.border} shadow-lg rounded-lg py-4 px-6 relative`}
             >
-              <div className='flex justify-center max-h-10'>
-                <img
-                  src={item.team.assets.icon}
-                  className='object-contain opacity-20'
-                  alt={`${item.team.name}+icon`}
-                />
-              </div>
-
-              <h2 className='text-lg font-bold text-blue-500 mb-2'>
-                {item.team.name}
-              </h2>
-              <p className='text-sm text-gray-500'>{item.team.dist}</p>
-              <p className='text-3xl font-bold text-blue-700'>
-                {item.temperature}°C
-              </p>
-
-              <p className='text-gray-700'>體感溫度{item.appTem}°C</p>
-              <div className='mt-2 text-sm text-gray-600'>
-                <p>💧 降雨機率 {item.pop}%</p>
-                <p>🔺 最高 {item.highTemp}°C</p>
-                <p>🔻 最低 {item.lowTemp}°C</p>
-                <p className='text-xs mt-2'>{item.updateTime}</p>
-                <p className='text-xs mt-2'>現在時間：{nowTime}</p>
-                <p className='text-xs mt-2'>{item.weatherIcon}</p>
-                <p className='text-xs mt-2'>{item.weatherStatus}</p>
-              </div>
-            </div>
-          ))}
-          {data.map((item) => (
-            <div
-              key={item.id}
-              className={`bg-white ${item.team.theme.text} border-b-2 border-e-2 ${item.team.theme.border} shadow-lg rounded-lg p-4 relative`}
-            >
-              <div className='absolute top-1/4 z-0'>
+              <div className='absolute top-4 right-4 z-0'>
                 <img
                   src={item.team.assets.icon}
                   className='object-contain opacity-20 max-h-10'
                   alt={`${item.team.name}+icon`}
-                />
+                />{' '}
               </div>
-              <div className={`${item.team.theme.text}`}>
-                <p className='text-xs mt-2'>{item.weatherIcon}</p>
-                <p className='text-3xl font-bold text-blue-700'>
-                  {item.temperature}°C
-                </p>
-                <span className='text-xs mt-2'>
-                  {item.highTemp}°C /{item.lowTemp}°C
-                </span>
+              <div className='flex justify-between items-center'>
+                <div className='text-gray-900'>
+                  <div className='text-xs text-gray-500 flex items-center gap-2'>
+                    <p className='text-sm'>{item.weatherIcon}</p> |{' '}
+                    <p className=''>{item.team.dist}</p>
+                  </div>
+                  <p className='text-3xl font-bold'>{item.temperature}°C</p>
+                  <span className='text-sm'>
+                    {item.highTemp}°C /{item.lowTemp}°C
+                  </span>
+                  <div className='text-xs text-gray-500 flex items-center gap-2'>
+                    <p className=''>降雨機率 {item.pop}%</p> |
+                    <p className=''>體感溫度{item.appTem}°C</p>
+                  </div>
+                </div>
+                <div className={`${item.team.theme.text}`}>
+                  <h2 className='text-3xl font-bold mb-2'>{item.team.name}</h2>
+                </div>
               </div>
 
-              {/* <h2 className='text-lg font-bold text-blue-500 mb-2'>
-                {item.teamName}
-              </h2>
-              <p className='text-sm text-gray-500'>{item.location}</p>
+              {/* 
+              
 
-              <p className='text-gray-700'>體感溫度{item.appTem}°C</p>
+              
               <div className='mt-2 text-sm text-gray-600'>
-                <p>💧 降雨機率 {item.pop}%</p>
+                
 
                 <p className='text-xs mt-2'>{item.updateTime}</p>
                 <p className='text-xs mt-2'>現在時間：{nowTime}</p>
@@ -129,6 +85,11 @@ const WeatherCard = () => {
               </div> */}
             </div>
           ))}
+        </div>
+
+        {/* 更新時間 */}
+        <div className='my-4 mx-auto w-full text-center bg-denim-300'>
+          <p>最後更新時間:{nowTime}</p>
         </div>
       </div>
     </>

@@ -12,8 +12,6 @@ function App() {
   };
 
   const [isDay, setIsDay] = useState(getTime());
-  const bgDay = '/images/bg-day.jpg';
-  const bgNight = '/images/bg-night.jpg';
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -25,7 +23,9 @@ function App() {
 
   return (
     <>
-      <main className={`flex bg-[bg-url(${isDay ? bgDay : bgNight})]`}>
+      <main
+        className={`flex h-screen bg-cover bg-center bg-white/40 bg-blend-overlay ${isDay ? 'bg-[url(/images/bg-day.jpg)]' : 'bg-[url(/images/bg-night.jpg)]'}`}
+      >
         <WeatherCard />
       </main>
     </>

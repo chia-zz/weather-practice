@@ -114,7 +114,7 @@ const useWeatherData = () => {
         weatherIcon: weatherIconMap[weatherCode] ?? '😖',
       };
       // const newData = Object.values(mergedData);
-      console.log('總整理', mergedData);
+      // console.log('總整理', mergedData);
       return mergedData;
     } catch (error) {
       console.error('任一請求失敗:', error);
