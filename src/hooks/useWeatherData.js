@@ -43,6 +43,7 @@ const useWeatherData = () => {
       const realtimeData = {
         id: rtBase.StationId,
         teamKey: teamKey,
+        location: `${team.dist}`,
         updateTime: formatDateTime(rtBase.ObsTime.DateTime),
         rawTime: rtBase.ObsTime.DateTime,
         weather: rtBase.WeatherElement.Weather,
@@ -72,6 +73,7 @@ const useWeatherData = () => {
         return dataTime >= start && dataTime < end;
       });
       // 體感溫度
+
       const appTemElement = dataBase.WeatherElement.find(
         (el) => el.ElementName === '體感溫度',
       );
@@ -104,12 +106,12 @@ const useWeatherData = () => {
         lowTemp: handleInvalidValue(realtimeData.lowTemp),
         // 36hr
         appTem: handleInvalidValue(
-          matchedAppTem?.ElementValue[0].ApparentTemperature,
+          matchedAppTem?.ElementValue[0]?.ApparentTemperature,
         ),
         pop: handleInvalidValue(
-          matchedPop?.ElementValue[0].ProbabilityOfPrecipitation,
+          matchedPop?.ElementValue[0]?.ProbabilityOfPrecipitation,
         ),
-        weatherStatus: handleInvalidValue(matchedWS?.ElementValue[0].Weather),
+        weatherStatus: handleInvalidValue(matchedWS?.ElementValue[0]?.Weather),
         weatherCode,
         weatherIcon: weatherIconMap[weatherCode] ?? '😖',
       };

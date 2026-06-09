@@ -59,10 +59,10 @@ const WeatherCard = () => {
                   </div>
                   <p className='text-3xl font-bold'>{item.temperature}°C</p>
                   <span className='text-sm'>
-                    {item.highTemp}°C /{item.lowTemp}°C
+                    {item.highTemp}°C / {item.lowTemp}°C
                   </span>
                   <div className='text-xs text-gray-500 flex items-center gap-2'>
-                    <p className=''>降雨機率 {item.pop}%</p> |
+                    <p className=''>降雨機率{item.pop}%</p> |
                     <p className=''>體感溫度{item.appTem}°C</p>
                   </div>
                 </div>
@@ -70,19 +70,6 @@ const WeatherCard = () => {
                   <h2 className='text-3xl font-bold mb-2'>{item.team.name}</h2>
                 </div>
               </div>
-
-              {/* 
-              
-
-              
-              <div className='mt-2 text-sm text-gray-600'>
-                
-
-                <p className='text-xs mt-2'>{item.updateTime}</p>
-                <p className='text-xs mt-2'>現在時間：{nowTime}</p>
-
-                <p className='text-xs mt-2'>{item.weatherStatus}</p>
-              </div> */}
             </div>
           ))}
         </div>
