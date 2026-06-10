@@ -121,14 +121,7 @@ const useWeatherData = () => {
         weatherCode,
       };
       // const newData = Object.values(mergedData);
-      console.log('總整理', mergedData);
-      console.log(dataBase);
-      console.log('rawTime:', realtimeData.rawTime);
-      console.log(
-        'PopElement 第一筆 StartTime:',
-        popElement?.Time[0]?.StartTime,
-      );
-      console.log('AppTem 第一筆 DataTime:', appTemElement?.Time[0]?.DataTime);
+      // console.log('總整理', mergedData);
       return mergedData;
     } catch (error) {
       console.error('任一請求失敗:', error);
