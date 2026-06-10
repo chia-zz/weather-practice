@@ -6,8 +6,7 @@
 
 🔗 **Live Demo**：https://chia-zz.github.io/weather-practice/
 
-<!-- 建議在這裡放一張畫面截圖，例如： -->
-<!-- ![screenshot](./public/screenshot.png) -->
+![screenshot](./public/images/screenshot.png)
 
 ---
 
