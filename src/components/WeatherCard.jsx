@@ -39,7 +39,7 @@ const WeatherCard = ({ data, loading, error, refresh: fetchAll }) => {
 
         {/* 更新時間 */}
         <div className='mb-4 py-1 border-b border-b-[#163D2E] mx-auto w-full text-center bg-[#3F5E33] text-[#fff5ec]'>
-          <p>最後更新時間:{nowTime}</p>
+          <p>最後更新時間 ： {nowTime}</p>
         </div>
 
         {/* 即時天氣 */}
