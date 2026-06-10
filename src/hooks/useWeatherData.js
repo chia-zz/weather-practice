@@ -68,30 +68,33 @@ const useWeatherData = () => {
       const popElement = dataBase.WeatherElement.find(
         (el) => el.ElementName === '3小時降雨機率',
       );
-      const matchedPop = popElement.Time.find((item) => {
-        const dataTime = dayjs(realtimeData.rawTime);
-        const start = dayjs(item.StartTime);
-        const end = dayjs(item.EndTime);
-        return dataTime >= start && dataTime < end;
-      });
+      const matchedPop =
+        popElement.Time.find((item) => {
+          const dataTime = dayjs(realtimeData.rawTime);
+          const start = dayjs(item.StartTime);
+          const end = dayjs(item.EndTime);
+          return dataTime >= start && dataTime < end;
+        }) ?? popElement.Time[0];
       // 體感溫度
 
       const appTemElement = dataBase.WeatherElement.find(
         (el) => el.ElementName === '體感溫度',
       );
-      const matchedAppTem = appTemElement.Time.find((item) => {
-        return item.DataTime === realtimeData.rawTime;
-      });
+      const matchedAppTem =
+        appTemElement.Time.find((item) => {
+          return item.DataTime === realtimeData.rawTime;
+        }) ?? appTemElement.Time[0];
       // 天氣現象
       const weatherStatusElement = dataBase.WeatherElement.find(
         (el) => el.ElementName === '天氣現象',
       );
-      const matchedWS = weatherStatusElement.Time.find((item) => {
-        const dataTime = dayjs(realtimeData.rawTime);
-        const start = dayjs(item.StartTime);
-        const end = dayjs(item.EndTime);
-        return dataTime >= start && dataTime < end;
-      });
+      const matchedWS =
+        weatherStatusElement.Time.find((item) => {
+          const dataTime = dayjs(realtimeData.rawTime);
+          const start = dayjs(item.StartTime);
+          const end = dayjs(item.EndTime);
+          return dataTime >= start && dataTime < end;
+        }) ?? weatherStatusElement.Time[0];
 
       // 處理天氣 icon
       const weatherCode = handleInvalidValue(
@@ -118,7 +121,14 @@ const useWeatherData = () => {
         weatherCode,
       };
       // const newData = Object.values(mergedData);
-      // console.log('總整理', mergedData);
+      console.log('總整理', mergedData);
+      console.log(dataBase);
+      console.log('rawTime:', realtimeData.rawTime);
+      console.log(
+        'PopElement 第一筆 StartTime:',
+        popElement?.Time[0]?.StartTime,
+      );
+      console.log('AppTem 第一筆 DataTime:', appTemElement?.Time[0]?.DataTime);
       return mergedData;
     } catch (error) {
       console.error('任一請求失敗:', error);
