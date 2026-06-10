@@ -2,11 +2,13 @@ import { useState, useEffect } from 'react';
 import { getRealtime, getForecast36h } from '../api/Api';
 import dayjs from 'dayjs';
 import { locations } from '../data/locationData';
-import { weatherIconMap } from '../data/weatherIconMap';
+// import { weatherIconMap } from '../data/weatherIconMap';
 
 // 處理 -99
 const handleInvalidValue = (value) => {
-  return value === '-99' ? '資料異常' : value;
+  if (value === '-99') return '資料異常';
+  if (value === undefined || value === null) return '---';
+  return value;
 };
 
 const useWeatherData = () => {
@@ -95,6 +97,7 @@ const useWeatherData = () => {
       const weatherCode = handleInvalidValue(
         matchedWS?.ElementValue[0].WeatherCode,
       );
+
       const mergedData = {
         // base
         id: realtimeData.id,
@@ -113,7 +116,6 @@ const useWeatherData = () => {
         ),
         weatherStatus: handleInvalidValue(matchedWS?.ElementValue[0]?.Weather),
         weatherCode,
-        weatherIcon: weatherIconMap[weatherCode] ?? '😖',
       };
       // const newData = Object.values(mergedData);
       // console.log('總整理', mergedData);

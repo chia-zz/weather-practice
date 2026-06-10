@@ -46,4 +46,15 @@
   --color-guardians: #004a9c;
   --color-monkeys: #850b26;
   --color-hawks: #074737;
+
+  /* 製作 loading */
+  --animate-fade: fadeOut 0.5s forwards;
+  @keyframes fadeOut {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
 }
